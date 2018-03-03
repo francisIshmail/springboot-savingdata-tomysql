@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.jws.soap.SOAPBinding;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -23,10 +24,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserVO getUser(@PathVariable("id") Long id){
-
         return userAssembler.toUserVO(userService.getUserById(id));
+    }
+
+
+    @RequestMapping (value = "/test", method= RequestMethod.GET)
+    public String test(){
+        return "It is working";
     }
 
     @RequestMapping(method = RequestMethod.POST)
